@@ -1,5 +1,5 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import Card from 'primevue/card';
 </script>
@@ -7,7 +7,7 @@ import Card from 'primevue/card';
 <template>
     <Head title="Pengaturan Umum" />
 
-    <AuthenticatedLayout>
+    <DashboardLayout>
         <Card>
             <template #title>Simple Card</template>
             <template #content>
@@ -17,6 +17,6 @@ import Card from 'primevue/card';
                 </p>
             </template>
         </Card>
-    </AuthenticatedLayout>
+    </DashboardLayout>
 
 </template>
