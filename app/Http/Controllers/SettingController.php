@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    public function general(Request $request)
+    public function umum(Request $request)
     {
-        return Inertia::render('Setting/General', [
+        return Inertia::render('Setting/Umum', [
             'nama_lembaga' => '',
             'status' => '',
         ]);

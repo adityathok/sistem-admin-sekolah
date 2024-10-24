@@ -1,10 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import DashboardSidebar from '@/Layouts/DashboardSidebar.vue';
-
-
-const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
