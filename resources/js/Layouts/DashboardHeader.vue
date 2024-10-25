@@ -1,36 +1,43 @@
 <template>
     <div class="flex items-center justify-end p-4 md:px-6">
-        <Avatar class="p-overlay-badge" image="https://picsum.photos/id/200/300/300" size="large" shape="circle" @click="toggleAvatar"/>
-        <Popover ref="opAvatar">
-            <Menu :model="menuAvatar" />
-        </Popover>
+        <Avatar class="p-overlay-badge" image="https://github.com/adityathok.png?size=200" @click="toggleAvatar"  aria-haspopup="true" aria-controls="avatar_menu"/>
+        <Menu ref="menu" id="avatar_menu" :model="menuAvatar" :popup="true" />
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref,computed } from 'vue';
+import { usePage,router } from '@inertiajs/vue3'
 import Avatar from 'primevue/avatar';
-import Popover from 'primevue/popover';
 import Menu from 'primevue/menu';
 
-const opAvatar = ref();
+const page = usePage()
+const user = computed(() => page.props.auth.user)
+
+const menu = ref();
 const toggleAvatar = (event) => {
-    opAvatar.value.toggle(event);
-}
-const menuAvatar = ref([
-    {
-        label: 'Options',
-        items: [
-            {
-                label: 'Refresh',
-                icon: 'pi pi-refresh'
-            },
-            {
-                label: 'Export',
-                icon: 'pi pi-upload'
-            }
-        ]
-    }
-]);
+    menu.value.toggle(event);
+};
+
+ // Daftar Menu dengan label dinamis menggunakan user.name
+ const menuAvatar = computed(() => {
+    return [
+        {
+            label: user.value.name || 'User', // Menggunakan user.name
+            items: [
+                {
+                    label: 'Profile',
+                    icon: 'pi pi-user',
+                    command: () => router.visit('/profile') 
+                },
+                { 
+                    label: 'Logout',
+                    icon: 'pi pi-sign-out',
+                    command: () => router.visit('/logout',{method: 'post'}) 
+                }
+            ]
+        }
+    ];
+});
 
 </script>

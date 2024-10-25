@@ -8,6 +8,11 @@ import Card from 'primevue/card';
     <Head title="Pengaturan Umum" />
 
     <DashboardLayout>
+
+        <template #header>
+            Pengaturan
+        </template>
+
         <Card>
             <template #title>Simple Card</template>
             <template #content>
@@ -17,6 +22,7 @@ import Card from 'primevue/card';
                 </p>
             </template>
         </Card>
+        
     </DashboardLayout>
 
 </template>

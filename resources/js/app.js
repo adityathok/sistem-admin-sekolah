@@ -7,7 +7,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import PrimeVue from 'primevue/config';
-import Aura from '@primevue/themes/aura';
+import Nora from '@primevue/themes/nora';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -24,7 +24,7 @@ createInertiaApp({
             .use(ZiggyVue)
             .use(PrimeVue, {
                 theme: {
-                    preset: Aura,
+                    preset: Nora,
                     options: {
                         darkModeSelector: '.color-schema-dark',
                     }
