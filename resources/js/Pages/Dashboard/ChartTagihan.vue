@@ -1,6 +1,6 @@
 
 <template>
-    <div class="relative border border-slate-600 hover:shadow-lg transition-shadow p-5">
+    <div class="relative border border-slate-300 hover:shadow-lg transition-shadow p-5">
         <Chart type="line" :data="chartData" :options="chartOptions" class="h-[30rem]" />
     </div>
 </template>
