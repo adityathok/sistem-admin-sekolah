@@ -10,19 +10,25 @@ class SettingController extends Controller
 {
     public function umum(Request $request)
     {
-        $message = '';
-
-        if ($request['nama_lembaga']) {
-            Setting::set('nama_lembaga', $request['nama_lembaga']);
-            $message = 'Berhasil disimpan';
-        }
+        $settings = Setting::getMultiple([
+            'nama_lembaga',
+            'alamat_lembaga',
+            'kota_lembaga',
+            'tahun_pelajaran',
+            'pimpinan_lembaga',
+        ]);
 
         return Inertia::render('Setting/Umum', [
-            'settings' => [
-                'nama_lembaga' => Setting::get('nama_lembaga'),
-                'alamat_lembaga' => Setting::get('alamat_lembaga'),
+            'settings' => $settings,
+            'flash' => [
+                'success' => $request->session()->get('success'),
             ],
-            'message' => $message
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        Setting::set('nama_lembaga', $request['nama_lembaga']);
+        return redirect()->route('setting.umum')->with('success', 'Pengaturan berhasil disimpan!');
     }
 }
