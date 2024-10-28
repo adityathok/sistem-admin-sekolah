@@ -5,14 +5,14 @@ import DashboardSidebar from '@/Layouts/DashboardSidebar.vue';
 </script>
 
 <template>
-    <div class="relative h-screen bg-[#F1F5F9] md:ps-[250px]">
+    <div class="relative h-full min-h-[100vh] bg-[#F1F5F9] md:ps-[250px]">
 
        <DashboardSidebar />
 
-       <DashboardHeader />
-
         <!-- Page Content -->
-        <main class="p-5 md:pt-0 md:p-6">
+        <main class="p-5 md:pt-4 md:p-6">
+
+            <DashboardHeader />
             
             <!-- Page Heading -->
             <header v-if="$slots.header" class="mb-5">

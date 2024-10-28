@@ -8,22 +8,27 @@
 
     <div class="z-10 p-3 fixed top-0 left-0 bottom-0 md:w-[240px] w-[100%] ease-in duration-300" :class="{'OpenMobileSidebar': isOpenSidebar, 'CloseMobileSidebar': !isOpenSidebar}">
 
-        <Card>
+        <Card class="flex-col flex h-full">
             <template #content>
         
-                <div class="md:hidden text-end">
-                    <Button icon="pi pi-times" @click="toggleSidebar"/>
-                </div>
+                <!-- 
 
-                <ApplicationLogo class="w-[40px] mx-auto"/>
+                
 
                 <Divider />
 
                 <h2 class="text-center mb-4">
                     Hallo, {{ user.name }}
-                </h2>
+                </h2> -->
 
-                <ScrollPanel style="width: 100%; height: 72vh;">  
+                <div class="flex-initial pb-5">
+                    <div class="md:hidden text-end">
+                        <Button icon="pi pi-times" @click="toggleSidebar"/>
+                    </div>
+                    <ApplicationLogo class="w-[40px] mx-auto"/>
+                </div>
+
+                <ScrollPanel class="grow h-[80vh]">
                     
                     <ul>
                         <template v-for="item in items">
@@ -106,17 +111,14 @@ const items = ref([
         items: [
             {
                 label: 'Data Siswa',
-                icon: 'pi pi-users',
                 href:'/siswa',
             },
             {
                 label: 'Tambah Siswa',
-                icon: 'pi pi-user-plus',
                 href:'/siswa/create',
             },
             {
                 label: 'Naik Kelas',
-                icon: 'pi pi-caret-up',
                 href:'/siswa/naikkelas',
             }
         ]
@@ -127,12 +129,10 @@ const items = ref([
         items: [
             {
                 label: 'Umum',
-                icon: 'pi pi-cog',
                 href:'/setting/umum',
             },
             {
                 label: 'Jenjang',
-                icon: 'pi pi-building-columns',
                 href:'/setting/jenjang',
             }
         ]

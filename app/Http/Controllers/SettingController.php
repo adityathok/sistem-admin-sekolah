@@ -26,9 +26,25 @@ class SettingController extends Controller
         ]);
     }
 
+    public function jenjang(Request $request)
+    {
+        $settings = Setting::get('jenjang');
+
+        return Inertia::render('Setting/Jenjang', [
+            'settings' => json_decode($settings, true),
+            'flash' => [
+                'success' => $request->session()->get('success'),
+            ],
+        ]);
+    }
+
     public function store(Request $request)
     {
-        Setting::set('nama_lembaga', $request['nama_lembaga']);
-        return redirect()->route('setting.umum')->with('success', 'Pengaturan berhasil disimpan!');
+
+        foreach ($request['items'] as $item) {
+            Setting::set($item, $request[$item]);
+        }
+
+        return redirect()->route($request['redirect'])->with('success', 'Pengaturan berhasil disimpan!');
     }
 }

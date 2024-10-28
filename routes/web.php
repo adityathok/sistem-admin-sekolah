@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/setting/umum', [SettingController::class, 'umum'])->name('setting.umum');
+    Route::get('/setting/jenjang', [SettingController::class, 'jenjang'])->name('setting.jenjang');
     Route::post('/setting/store', [SettingController::class, 'store'])->name('setting.store');
 });
 
