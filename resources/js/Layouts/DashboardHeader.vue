@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center justify-end p-4 md:px-6">
-        <Avatar class="p-overlay-badge" image="https://github.com/adityathok.png?size=200" @click="toggleAvatar"  aria-haspopup="true" aria-controls="avatar_menu"/>
+        <Avatar class="p-overlay-badge" image="https://github.com/adityathok.png?size=200" @click="toggleAvatar" shape="circle" aria-haspopup="true" aria-controls="avatar_menu"/>
         <Menu ref="menu" id="avatar_menu" :model="menuAvatar" :popup="true" />
     </div>
 </template>

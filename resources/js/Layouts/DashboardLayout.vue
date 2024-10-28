@@ -5,7 +5,7 @@ import DashboardSidebar from '@/Layouts/DashboardSidebar.vue';
 </script>
 
 <template>
-    <div class="relative h-screen md:ps-[250px]">
+    <div class="relative h-screen bg-[#F1F5F9] md:ps-[250px]">
 
        <DashboardSidebar />
 

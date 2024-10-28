@@ -6,51 +6,57 @@
 
     <div class="z-10 fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 hidden" @click="toggleSidebar" :class="{'OpenbgMobileSidebar': isOpenSidebar, 'ClosebgMobileSidebar': !isOpenSidebar}"></div>
 
-    <div class="bg-zinc-100 z-10 p-3 fixed top-0 left-0 bottom-0 md:w-[240px] w-[90%] ease-in duration-300" :class="{'OpenMobileSidebar': isOpenSidebar, 'CloseMobileSidebar': !isOpenSidebar}">
+    <div class="z-10 p-3 fixed top-0 left-0 bottom-0 md:w-[240px] w-[100%] ease-in duration-300" :class="{'OpenMobileSidebar': isOpenSidebar, 'CloseMobileSidebar': !isOpenSidebar}">
 
-        <div class="md:hidden text-end">
-            <Button icon="pi pi-times" @click="toggleSidebar"/>
-        </div>
+        <Card>
+            <template #content>
+        
+                <div class="md:hidden text-end">
+                    <Button icon="pi pi-times" @click="toggleSidebar"/>
+                </div>
 
-        <ApplicationLogo class="w-[40px] mx-auto"/>
+                <ApplicationLogo class="w-[40px] mx-auto"/>
 
-        <Divider />
+                <Divider />
 
-        <h2 class="text-center mb-4">
-            Hallo, {{ user.name }}
-        </h2>
+                <h2 class="text-center mb-4">
+                    Hallo, {{ user.name }}
+                </h2>
 
-        <ScrollPanel style="width: 100%; height: 80vh;">  
-            
-            <ul>
-                <template v-for="item in items">
-                    <li class="mb-3">
-                        <Button v-if="item.items" @click="toggleMenu(item)" :unstyled="true" class="w-full py-2 px-3 hover:bg-blue-600 hover:text-white flex" :class="{'items-center justify-between': item.items}" severity="secondary" text >                                        
-                            <span>
-                                <i v-if="item.icon" class="pi me-2 opacity-50" :class="item.icon"></i>
-                                {{item.label}}
-                            </span>
-                            <span v-if="item.items" class="pi" :class="{'pi-angle-down': item.expanded,'pi-angle-right': !item.expanded}"></span>
-                        </Button>
+                <ScrollPanel style="width: 100%; height: 72vh;">  
+                    
+                    <ul>
+                        <template v-for="item in items">
+                            <li class="mb-3">
+                                <Button v-if="item.items" @click="toggleMenu(item)" :unstyled="true" class="w-full rounded py-2 px-3 hover:bg-blue-600 hover:text-white flex" :class="{'items-center justify-between': item.items}" severity="secondary" text >                                        
+                                    <span>
+                                        <i v-if="item.icon" class="pi me-2 opacity-50" :class="item.icon"></i>
+                                        {{item.label}}
+                                    </span>
+                                    <span v-if="item.items" class="pi" :class="{'pi-angle-down': item.expanded,'pi-angle-right': !item.expanded}"></span>
+                                </Button>
 
-                        <Link v-if="!item.items" :href="item.href" class="py-2 px-3 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 text-white': isActiveMenu(item)}">
-                            <i v-if="item.icon" class="pi me-2 opacity-50" :class="item.icon"></i>
-                            {{item.label}}
-                        </Link>
-
-                        <ul v-if="item.expanded && item.items">
-                            <li v-for="child in item.items" :key="child.id">
-
-                                <Link :href="child.href" class="ps-10 pe-2 py-2 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 text-white': isActiveMenu(child) }">
-                                    {{child.label}}
+                                <Link v-if="!item.items" :href="item.href" class="py-2 rounded px-3 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 shadow text-white': isActiveMenu(item)}">
+                                    <i v-if="item.icon" class="pi me-2 opacity-50" :class="item.icon"></i>
+                                    {{item.label}}
                                 </Link>
-                            </li>
-                        </ul>
 
-                    </li>
-                </template>
-            </ul>
-        </ScrollPanel>
+                                <ul v-if="item.expanded && item.items">
+                                    <li v-for="child in item.items" :key="child.id">
+
+                                        <Link :href="child.href" class="ps-10 rounded pe-2 py-2 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 shadow text-white': isActiveMenu(child) }">
+                                            {{child.label}}
+                                        </Link>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </template>
+                    </ul>
+                </ScrollPanel>
+
+            </template>
+        </Card>
 
     </div>
 </template>
@@ -62,6 +68,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Button from 'primevue/button';
 import ScrollPanel from 'primevue/scrollpanel';
 import Divider from 'primevue/divider';
+import Card from 'primevue/card';
 
 const page = usePage()
 const user = computed(() => page.props.auth.user)

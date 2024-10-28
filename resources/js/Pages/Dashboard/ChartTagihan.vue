@@ -1,14 +1,16 @@
 
 <template>
-    <div class="relative border border-slate-300 hover:shadow-lg transition-shadow p-5">
-        <Chart type="line" :data="chartData" :options="chartOptions" class="h-[30rem]" />
-    </div>
+    <Card>
+        <template #content>
+            <Chart type="line" :data="chartData" :options="chartOptions" class="h-[30rem]" />
+        </template>
+    </Card>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+import Card from 'primevue/card';
 import Chart from 'primevue/chart';
-
 
 onMounted(() => {
     chartData.value = setChartData();

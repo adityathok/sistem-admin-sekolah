@@ -3,7 +3,7 @@ import { onUpdated } from 'vue'
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import Inputs from '@/Components/Form/Inputs.vue';
 import { Head,router,useForm } from '@inertiajs/vue3';
-import InputText from 'primevue/inputtext'
+import Card from 'primevue/card';
 import Button from 'primevue/button'
 import Toast from 'primevue/toast';
 import { useToast } from "primevue/usetoast";
@@ -48,24 +48,30 @@ const itemInputs = [
 
     <DashboardLayout>
 
-        <template #header>
-            Pengaturan Umum
-        </template>
+        <Card class="mb-4 md:max-w-xl"> 
+            <template #title>
+                Pengaturan Umum
+            </template>
+            <template #subtitle>
+                Informasi profil lembaga atau yayasan
+            </template>
+            <template #content>
+                <form @submit.prevent="submit">
 
-        <form @submit.prevent="submit" class="mb-4 md:max-w-2xl">
+                    <Inputs :items="itemInputs" />
 
-            <Inputs :items="itemInputs" />
-
-            <div class="flex flex-col gap-3">
-                <!-- <div>
-                    <label for="nama_lembaga" class="font-bold block mb-2"> Nama Lembaga </label>
-                    <InputText class="w-full rounded-3xl" id="nama_lembaga" v-model="form.nama_lembaga" />
-                </div> -->
-                <div class="text-end">
-                    <Button type="submit" label="Simpan" />
-                </div>
-            </div>            
-        </form>
+                    <div class="flex flex-col gap-3">
+                        <!-- <div>
+                            <label for="nama_lembaga" class="font-bold block mb-2"> Nama Lembaga </label>
+                            <InputText class="w-full rounded-3xl" id="nama_lembaga" v-model="form.nama_lembaga" />
+                        </div> -->
+                        <div class="text-end">
+                            <Button type="submit" label="Simpan" />
+                        </div>
+                    </div>            
+                </form>
+            </template>
+        </Card>       
 
         <Toast position="bottom-right"/>
         
