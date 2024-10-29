@@ -11,7 +11,7 @@
                 Informasi profil lembaga atau yayasan
             </template>
             <template #content>
-                <form @submit.prevent="submit">
+                <form @submit.prevent="submit" class="mt-3">
 
                     <div class="flex flex-col gap-3">
                         <div v-for="item in itemInputs">

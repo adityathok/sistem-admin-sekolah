@@ -1,18 +1,13 @@
 <template>
-    <Card class="mb-5">
-        <template #content>
-            <div class="flex items-center justify-end">
-                <Avatar class="p-overlay-badge" image="https://github.com/adityathok.png?size=200" @click="toggleAvatar" shape="circle" aria-haspopup="true" aria-controls="avatar_menu"/>
-                <Menu ref="menu" id="avatar_menu" :model="menuAvatar" :popup="true" />
-            </div>
-        </template>
-    </Card>
+    <div class="flex items-center justify-end mb-10">
+        <Avatar class="p-overlay-badge" image="https://github.com/adityathok.png?size=200" @click="toggleAvatar" shape="circle" aria-haspopup="true" aria-controls="avatar_menu"/>
+        <Menu ref="menu" id="avatar_menu" :model="menuAvatar" :popup="true" />
+    </div>
 </template>
 
 <script setup>
 import { ref,computed } from 'vue';
 import { usePage,router } from '@inertiajs/vue3'
-import Card from 'primevue/card';
 import Avatar from 'primevue/avatar';
 import Menu from 'primevue/menu';
 

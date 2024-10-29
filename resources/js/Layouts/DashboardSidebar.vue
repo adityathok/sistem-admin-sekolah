@@ -8,7 +8,7 @@
 
     <div class="z-10 p-3 fixed top-0 left-0 bottom-0 md:w-[240px] w-[100%] ease-in duration-300" :class="{'OpenMobileSidebar': isOpenSidebar, 'CloseMobileSidebar': !isOpenSidebar}">
 
-        <Card class="flex-col flex h-full">
+        <Card class="flex-col flex h-full overflow-hidden">
             <template #content>
         
                 <!-- 
@@ -47,7 +47,7 @@
                                 </Link>
 
                                 <ul v-if="item.expanded && item.items">
-                                    <li v-for="child in item.items" :key="child.id">
+                                    <li v-for="child in item.items" :key="child.id" class="mb-1">
 
                                         <Link :href="child.href" class="ps-10 rounded pe-2 py-2 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 shadow text-white': isActiveMenu(child) }">
                                             {{child.label}}

@@ -28,10 +28,19 @@ class SettingController extends Controller
 
     public function jenjang(Request $request)
     {
+        $message = null;
+
+        if ($request['jenjang']) {
+            $settings = Setting::set('jenjang', $request['jenjang']);
+            $message = 'sukses';
+            session()->now('success', 'jenjang berhasil disimpan');
+        }
+
         $settings = Setting::get('jenjang');
 
         return Inertia::render('Setting/Jenjang', [
             'settings' => json_decode($settings, true),
+            'message' => $message,
             'flash' => [
                 'success' => $request->session()->get('success'),
             ],
