@@ -29,7 +29,7 @@
             </template>
         </Card>
 
-        <Toast position="bottom-right"/>
+        <Toast position="top-right"/>
 
     </DashboardLayout>
 
@@ -66,7 +66,7 @@ const submit = () => {
 
 onUpdated (() => {
     if (props.flash.success) {
-        toast.add({ severity: 'success', summary: 'Info', detail: props.flash.success, life: 1000 });
+        toast.add({ severity: 'success', summary: 'Sukses', detail: props.flash.success, life: 1000 });
     }
 })
 

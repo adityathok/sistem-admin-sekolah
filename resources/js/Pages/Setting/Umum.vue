@@ -23,6 +23,15 @@
                             />
                         </div>
 
+                        <div class="mb-3">
+                            <label :for="logo_lembaga" class="font-bold block mb-2">
+                                Logo Lembaga          
+                            </label>
+
+                            <img v-if="form['logo_lembaga']" :src="`/storage/${form['logo_lembaga']}`" alt="Image" class="w-full rounded mb-2 sm:w-64">
+                            <FileUpload @select="onFileSelect" mode="basic" name="logo_lembaga" url="/api/upload" accept="image/*" :maxFileSize="1000000" @input="form.logo_lembaga = $event.target.files[0]"  class="justify-start" />
+                        </div>
+
                         <div class="text-end">
                             <Button type="submit" label="Simpan" />
                         </div>
@@ -32,7 +41,7 @@
             </template>
         </Card>       
 
-        <Toast position="bottom-right"/>
+        <Toast position="top-right"/>
         
     </DashboardLayout>
 
@@ -48,6 +57,9 @@ import Toast from 'primevue/toast';
 import { useToast } from "primevue/usetoast";
 const toast = useToast();
 import Inputs from '@/Components/Form/Inputs.vue';
+import FileUpload from 'primevue/fileupload';
+
+const src = ref(null);
 
 const itemInputs = [
     {
@@ -87,18 +99,30 @@ const form = useForm({
     kota_lembaga: props.settings.kota_lembaga || 'Kota',
     tahun_pelajaran: props.settings.tahun_pelajaran || '2024/2025',
     pimpinan_lembaga: props.settings.pimpinan_lembaga || 'Fulan S.Pd',
-    items: ['nama_lembaga','alamat_lembaga','kota_lembaga','tahun_pelajaran','pimpinan_lembaga'],
-    redirect: 'setting.umum',
+    logo_lembaga: props.settings.logo_lembaga || null,
 })
 
 onUpdated (() => {
     if (props.flash.success) {
-        toast.add({ severity: 'success', summary: 'Info', detail: props.flash.success, life: 1000 });
+        toast.add({ severity: 'success', summary: 'Sukses', detail: props.flash.success, life: 1000 });
     }
 })
 
 function submit() {
-  router.post('/setting/store', form)
+    router.post('/setting/umum', form, {
+        forceFormData: true,
+    })
+}
+
+function onFileSelect(event) {
+    const file = event.files[0];
+    const reader = new FileReader();
+
+    reader.onload = async (e) => {
+        src.value = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
 }
 
 </script>
