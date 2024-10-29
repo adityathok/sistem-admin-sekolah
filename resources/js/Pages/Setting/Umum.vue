@@ -24,12 +24,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <label :for="logo_lembaga" class="font-bold block mb-2">
+                            <label for="logo_lembaga" class="font-bold block mb-2">
                                 Logo Lembaga          
                             </label>
 
-                            <img v-if="form['logo_lembaga']" :src="`/storage/${form['logo_lembaga']}`" alt="Image" class="w-full rounded mb-2 sm:w-64">
-                            <FileUpload @select="onFileSelect" mode="basic" name="logo_lembaga" url="/api/upload" accept="image/*" :maxFileSize="1000000" @input="form.logo_lembaga = $event.target.files[0]"  class="justify-start" />
+                            <img v-if="src" :src="src" alt="Image" class="w-full rounded mb-2 sm:w-64">
+                            <FileUpload @select="onFileSelect" mode="basic" name="logo_lembaga" url="/api/upload" accept="image/*" :maxFileSize="1000000" @input="form.logo_lembaga = $event.target.files[0]" chooseLabel="Upload gambar"/>
                         </div>
 
                         <div class="text-end">
@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { onUpdated } from 'vue'
+import { onUpdated,ref } from 'vue'
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { Head,router,useForm  } from '@inertiajs/vue3';
 import Card from 'primevue/card';
@@ -58,8 +58,6 @@ import { useToast } from "primevue/usetoast";
 const toast = useToast();
 import Inputs from '@/Components/Form/Inputs.vue';
 import FileUpload from 'primevue/fileupload';
-
-const src = ref(null);
 
 const itemInputs = [
     {
@@ -99,8 +97,10 @@ const form = useForm({
     kota_lembaga: props.settings.kota_lembaga || 'Kota',
     tahun_pelajaran: props.settings.tahun_pelajaran || '2024/2025',
     pimpinan_lembaga: props.settings.pimpinan_lembaga || 'Fulan S.Pd',
-    logo_lembaga: props.settings.logo_lembaga || null,
+    logo_lembaga: props.settings.logo_lembaga_url || null,
 })
+
+const src = ref(form['logo_lembaga'].length?form['logo_lembaga']:'');
 
 onUpdated (() => {
     if (props.flash.success) {

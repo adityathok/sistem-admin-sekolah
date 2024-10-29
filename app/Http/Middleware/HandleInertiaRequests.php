@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use App\Models\Setting;
+use Illuminate\Support\Facades\Storage;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -34,6 +36,9 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'app_var' => [
+                'logo_lembaga' => Setting::get('logo_lembaga') ? Storage::url(Setting::get('logo_lembaga')) : '',
+            ]
         ];
     }
 }

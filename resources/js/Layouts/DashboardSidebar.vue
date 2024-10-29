@@ -11,24 +11,20 @@
         <Card class="flex-col flex h-full overflow-hidden">
             <template #content>
         
-                <!-- 
-
-                
-
-                <Divider />
-
-                <h2 class="text-center mb-4">
-                    Hallo, {{ user.name }}
-                </h2> -->
-
-                <div class="flex-initial pb-5">
+                <div class="flex-initial pb-3">
                     <div class="md:hidden text-end">
                         <Button icon="pi pi-times" @click="toggleSidebar"/>
                     </div>
-                    <ApplicationLogo class="w-[40px] mx-auto"/>
-                </div>
 
-                <ScrollPanel class="grow h-[80vh]">
+                    <Link href="/dashboard">
+                        <ApplicationLogo v-if="!logo_lembaga" class="max-h-[80px] mx-auto"/>
+                        <img v-if="logo_lembaga" :src="logo_lembaga" class="max-h-[80px] mx-auto" alt="Logo">
+                    </Link>
+
+                </div>
+                <Divider />
+
+                <ScrollPanel class="grow h-[70vh] md:h-[75vh]">
                     
                     <ul>
                         <template v-for="item in items">
@@ -76,7 +72,7 @@ import Divider from 'primevue/divider';
 import Card from 'primevue/card';
 
 const page = usePage()
-const user = computed(() => page.props.auth.user)
+const logo_lembaga = computed(() => page.props.app_var.logo_lembaga)
 
 const isOpenSidebar = ref(false);
 const toggleSidebar = () => {

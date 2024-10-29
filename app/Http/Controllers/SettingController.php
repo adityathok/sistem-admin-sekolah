@@ -30,12 +30,15 @@ class SettingController extends Controller
                 Setting::set($item, $request[$item]);
             }
 
-            if ($request['logo_lembaga']) {
+            //upload gambar logo_lembaga
+            if ($request['logo_lembaga'] && $request->file('logo_lembaga')) {
+                //hapus gambar sebelumnya
                 $oldimg = Setting::get('logo_lembaga');
                 if ($oldimg && Storage::disk('public')->exists($oldimg)) {
                     Storage::disk('public')->delete($oldimg);
                 }
-                $path = $request->file('logo_lembaga')->store('images', 'public');
+                //upload dan beri nama baru
+                $path = $request->file('logo_lembaga')->storeAs('images/' . date('Y/m'), 'logo_lembaga_' . uniqid() . '.' . $request->file('logo_lembaga')->getClientOriginalExtension(), 'public');
                 Setting::set('logo_lembaga', $path);
             }
 
@@ -43,6 +46,7 @@ class SettingController extends Controller
         }
 
         $settings = Setting::getMultiple($items);
+        $settings['logo_lembaga_url'] = Storage::url(Setting::get('logo_lembaga'));
 
         return Inertia::render('Setting/Umum', [
             'settings' => $settings,
