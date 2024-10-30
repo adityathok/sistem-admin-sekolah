@@ -120,6 +120,24 @@ const items = ref([
         ]
     },
     {
+        label: 'Unit Sekolah',
+        icon: 'pi pi-building-columns',
+        items: [
+            {
+                label: 'Tambah Unit',
+                href:'/unitsekolah/create',
+            },
+            {
+                label: 'Daftar Unit',
+                href:'/unitsekolah',
+            },
+            {
+                label: 'Naik Kelas',
+                href:'/siswa/naikkelas',
+            }
+        ]
+    },
+    {
         label: 'Pengaturan',
         icon: 'pi pi-cog',
         items: [
@@ -130,27 +148,6 @@ const items = ref([
             {
                 label: 'Jenjang',
                 href:'/setting/jenjang',
-            }
-        ]
-    },
-    {
-        label: 'Siswa',
-        icon: 'pi pi-users',
-        items: [
-            {
-                label: 'Data Siswa',
-                icon: 'pi pi-users',
-                href:'/siswa',
-            },
-            {
-                label: 'Tambah Siswa',
-                icon: 'pi pi-user-plus',
-                href:'/siswa/create',
-            },
-            {
-                label: 'Naik Kelas',
-                icon: 'pi pi-caret-up',
-                href:'/siswa/naikkelas',
             }
         ]
     },
