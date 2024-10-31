@@ -6,58 +6,54 @@
 
     <div class="z-10 fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 hidden" @click="toggleSidebar" :class="{'OpenbgMobileSidebar': isOpenSidebar, 'ClosebgMobileSidebar': !isOpenSidebar}"></div>
 
-    <div class="z-10 p-3 fixed top-0 left-0 bottom-0 md:w-[240px] w-[100%] ease-in duration-300" :class="{'OpenMobileSidebar': isOpenSidebar, 'CloseMobileSidebar': !isOpenSidebar}">
+    
+    <div class="z-10 md:bg-zinc-100 bg-white p-3 fixed top-0 left-0 bottom-0 md:w-[240px] w-[95%] ease-in duration-300" :class="{'OpenMobileSidebar': isOpenSidebar, 'CloseMobileSidebar': !isOpenSidebar}">
 
-        <Card class="flex-col flex h-full overflow-hidden">
-            <template #content>
-        
-                <div class="flex-initial pb-3">
-                    <div class="md:hidden text-end">
-                        <Button icon="pi pi-times" @click="toggleSidebar"/>
-                    </div>
+        <div class="flex-initial pb-3">
+            <div class="md:hidden text-end">
+                <Button icon="pi pi-times" @click="toggleSidebar"/>
+            </div>
 
-                    <Link href="/dashboard">
-                        <ApplicationLogo v-if="!logo_lembaga" class="max-h-[80px] mx-auto"/>
-                        <img v-if="logo_lembaga" :src="logo_lembaga" class="max-h-[80px] mx-auto" alt="Logo">
-                    </Link>
+            <Link href="/dashboard">
+                <ApplicationLogo v-if="!logo_lembaga" class="max-h-[80px] mx-auto"/>
+                <img v-if="logo_lembaga" :src="logo_lembaga" class="max-h-[80px] mx-auto" alt="Logo">
+            </Link>
 
-                </div>
-                <Divider />
+        </div>
 
-                <ScrollPanel class="grow h-[70vh] md:h-[75vh]">
-                    
-                    <ul>
-                        <template v-for="item in items">
-                            <li class="mb-3">
-                                <Button v-if="item.items" @click="toggleMenu(item)" :unstyled="true" class="w-full rounded py-2 px-3 hover:bg-blue-600 hover:text-white flex" :class="{'items-center justify-between': item.items}" severity="secondary" text >                                        
-                                    <span>
-                                        <i v-if="item.icon" class="pi me-2 opacity-50" :class="item.icon"></i>
-                                        {{item.label}}
-                                    </span>
-                                    <span v-if="item.items" class="pi" :class="{'pi-angle-down': item.expanded,'pi-angle-right': !item.expanded}"></span>
-                                </Button>
+        <Divider />
 
-                                <Link v-if="!item.items" :href="item.href" class="py-2 rounded px-3 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 shadow text-white': isActiveMenu(item)}">
-                                    <i v-if="item.icon" class="pi me-2 opacity-50" :class="item.icon"></i>
-                                    {{item.label}}
+        <ScrollPanel class="grow h-[70vh] md:h-[75vh]">
+            
+            <ul>
+                <template v-for="item in items">
+                    <li class="mb-3">
+                        <Button v-if="item.items" @click="toggleMenu(item)" :unstyled="true" class="w-full rounded py-2 px-3 hover:bg-blue-600 hover:text-white flex" :class="{'items-center justify-between': item.items}" severity="secondary" text >                                        
+                            <span>
+                                <i v-if="item.icon" class="pi me-2 opacity-50" :class="item.icon"></i>
+                                {{item.label}}
+                            </span>
+                            <span v-if="item.items" class="pi" :class="{'pi-angle-down': item.expanded,'pi-angle-right': !item.expanded}"></span>
+                        </Button>
+
+                        <Link v-if="!item.items" :href="item.href" class="py-2 rounded px-3 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 shadow text-white': isActiveMenu(item)}">
+                            <i v-if="item.icon" class="pi me-2 opacity-50" :class="item.icon"></i>
+                            {{item.label}}
+                        </Link>
+
+                        <ul v-if="item.expanded && item.items">
+                            <li v-for="child in item.items" :key="child.id" class="mb-1">
+
+                                <Link :href="child.href" class="ps-10 rounded pe-2 py-2 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 shadow text-white': isActiveMenu(child) }">
+                                    {{child.label}}
                                 </Link>
-
-                                <ul v-if="item.expanded && item.items">
-                                    <li v-for="child in item.items" :key="child.id" class="mb-1">
-
-                                        <Link :href="child.href" class="ps-10 rounded pe-2 py-2 block hover:bg-blue-600 hover:text-white" :class="{ 'bg-blue-600 shadow text-white': isActiveMenu(child) }">
-                                            {{child.label}}
-                                        </Link>
-                                    </li>
-                                </ul>
-
                             </li>
-                        </template>
-                    </ul>
-                </ScrollPanel>
+                        </ul>
 
-            </template>
-        </Card>
+                    </li>
+                </template>
+            </ul>
+        </ScrollPanel>
 
     </div>
 </template>
@@ -69,7 +65,6 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Button from 'primevue/button';
 import ScrollPanel from 'primevue/scrollpanel';
 import Divider from 'primevue/divider';
-import Card from 'primevue/card';
 
 const page = usePage()
 const logo_lembaga = computed(() => page.props.app_var.logo_lembaga)
@@ -219,10 +214,6 @@ const items = ref([
 </script>
 
 <style>
-    .dashboardmenu {
-        border: none !important;
-        min-width: 100% !important;
-    }
     @media(max-width: 768px){
         .CloseMobileSidebar {
             left: -100% !important;

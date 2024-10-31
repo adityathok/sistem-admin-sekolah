@@ -2,44 +2,42 @@
     <Head title="Pengaturan Umum" />
 
     <DashboardLayout>
+        
+        <template #title>
+            Pengaturan Umum
+        </template>
 
-        <Card class="mb-4 mx-auto md:max-w-xl"> 
-            <template #title>
-                Pengaturan Umum
-            </template>
-            <template #subtitle>
-                Informasi profil lembaga atau yayasan
-            </template>
-            <template #content>
-                <form @submit.prevent="submit" class="mt-3">
+        <template #subtitle>
+            Informasi profil lembaga atau yayasan
+        </template>
+                
+        <form @submit.prevent="submit" class="mt-3 max-w-[650px]">
 
-                    <div class="flex flex-col gap-3">
-                        <div v-for="item in itemInputs">
-                            <Inputs 
-                                :item="item"
-                                :modelValue="form[item.name]"
-                                v-model="form[item.name]"
-                                @input="$emit('update:form', $event.target.value)"
-                            />
-                        </div>
+            <div class="flex flex-col gap-3">
+                <div v-for="item in itemInputs">
+                    <Inputs 
+                        :item="item"
+                        :modelValue="form[item.name]"
+                        v-model="form[item.name]"
+                        @input="$emit('update:form', $event.target.value)"
+                    />
+                </div>
 
-                        <div class="mb-3">
-                            <label for="logo_lembaga" class="font-bold block mb-2">
-                                Logo Lembaga          
-                            </label>
+                <div class="mb-3">
+                    <label for="logo_lembaga" class="font-bold block mb-2">
+                        Logo Lembaga          
+                    </label>
 
-                            <img v-if="src" :src="src" alt="Image" class="w-full rounded mb-2 sm:w-64">
-                            <FileUpload @select="onFileSelect" mode="basic" name="logo_lembaga" url="/api/upload" accept="image/*" :maxFileSize="1000000" @input="form.logo_lembaga = $event.target.files[0]" chooseLabel="Upload gambar"/>
-                        </div>
+                    <img v-if="src" :src="src" alt="Image" class="w-full rounded mb-2 sm:w-64">
+                    <FileUpload @select="onFileSelect" mode="basic" name="logo_lembaga" url="/api/upload" accept="image/*" :maxFileSize="1000000" @input="form.logo_lembaga = $event.target.files[0]" chooseLabel="Upload gambar"/>
+                </div>
 
-                        <div class="text-end">
-                            <Button type="submit" label="Simpan" />
-                        </div>
-                    </div>        
+                <div class="text-end">
+                    <Button type="submit" label="Simpan" />
+                </div>
+            </div>        
 
-                </form>
-            </template>
-        </Card>       
+        </form>  
 
         <Toast position="top-right"/>
         
@@ -51,7 +49,6 @@
 import { onUpdated,ref } from 'vue'
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { Head,router,useForm  } from '@inertiajs/vue3';
-import Card from 'primevue/card';
 import Button from 'primevue/button'
 import Toast from 'primevue/toast';
 import { useToast } from "primevue/usetoast";

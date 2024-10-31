@@ -7,6 +7,10 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+
+
 defineProps({
     canResetPassword: {
         type: Boolean,
@@ -53,54 +57,14 @@ function handleImageError() {
 <template>
     <Head title="Welcome" />
 
-    <div class="relative h-screen bg-gradient-to-br from-blue-600 to-sky-300 ">
+    <div class="relative flex justify-center items-center h-screen w-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-700 via-blue-800 to-gray-900">
+      
+        <div class="text-slate-900 bg-white shadow-xl p-10 m-3 w-full md:w-[450px]">  
 
-
-        <div class="absolute top-0 bottom-0 end-0 bg-white p-10 w-full md:w-[45%] flex justify-center items-center">
-
-            <form @submit.prevent="submit" class="w-[500px] mx-auto">
+            <form @submit.prevent="submit" class="w-full mx-auto">
                 <template v-if="logo_lembaga">
                     <img v-if="logo_lembaga" :src="logo_lembaga" class="max-h-[80px] md:max-h-[150px] mx-auto" alt="Logo">
                 </template>
-                <div>
-                    <InputLabel for="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        class="mt-1 block w-full"
-                        v-model="form.email"
-                        required
-                        autofocus
-                        autocomplete="username"
-                    />
-
-                    <InputError class="mt-2" :message="form.errors.email" />
-                </div>
-
-                <div class="mt-4">
-                    <InputLabel for="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        class="mt-1 block w-full"
-                        v-model="form.password"
-                        required
-                        autocomplete="current-password"
-                    />
-
-                    <InputError class="mt-2" :message="form.errors.password" />
-                </div>
-
-                <div class="mt-4 block">
-                    <label class="flex items-center">
-                        <Checkbox name="remember" v-model:checked="form.remember" />
-                        <span class="ms-2 text-sm text-gray-600"
-                            >Remember me</span
-                        >
-                    </label>
-                </div>
 
                 <div class="mt-4 flex items-center justify-end">
                     <Link
@@ -111,17 +75,41 @@ function handleImageError() {
                         Forgot your password?
                     </Link>
 
-                    <PrimaryButton
-                        class="ms-4"
-                        :class="{ 'opacity-25': form.processing }"
-                        :disabled="form.processing"
-                    >
-                        Log in
-                    </PrimaryButton>
                 </div>
+
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <InputText id="email" type="text" class="w-full" v-model="form.email" required/>
+                    <InputError class="mt-2" :message="form.errors.email" />
+                </div>
+                <div class="mb-3">
+                    <label for="password">Password</label>
+                    <InputText id="password" type="password" class="w-full" v-model="form.password" required/>
+                    <InputError class="mt-2" :message="form.errors.password" />
+                </div>
+
+                <div class="my-4 block">
+                    <label class="flex items-center">
+                        <Checkbox name="remember" v-model:checked="form.remember" />
+                        <span class="ms-2 text-sm text-gray-600"
+                            >Remember me</span
+                        >
+                    </label>
+                </div>
+
+                <Button
+                    type="submit" 
+                    class="w-full"
+                    label="Log in"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                />
             </form>
+
         </div>
 
     </div>
+
+    
 
 </template>

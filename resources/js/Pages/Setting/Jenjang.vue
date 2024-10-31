@@ -3,31 +3,30 @@
 
     <DashboardLayout>
 
-        <Card class="md:max-w-xl mx-auto">
-            <template #title>
-                Jenjang
-            </template>
-            <template #subtitle>
-                Jenjang pendidikan yang ada
-            </template>
-            <template #content>
+        <template #title>
+            Jenjang
+        </template>
+        <template #subtitle>
+            Jenjang pendidikan yang ada
+        </template>
+        
+        <div class="max-w-xl">
                 
-                    <div v-for="(input, index) in inputs" :key="index" class="flex my-2">
+            <div v-for="(input, index) in inputs" :key="index" class="flex my-2">
 
-                        <InputGroup>
-                            <InputText v-model="inputs[index]" placeholder="Jenjang" />
-                            <Button @click="removeInput(index)" icon="pi pi-times" severity="danger" />
-                        </InputGroup>
+                <InputGroup>
+                    <InputText v-model="inputs[index]" placeholder="Jenjang" />
+                    <Button @click="removeInput(index)" icon="pi pi-times" severity="danger" outlined/>
+                </InputGroup>
 
-                    </div>
+            </div>
 
-                    <div class="text-end mt-3">
-                        <Button @click="addInput()" type="button" label="Tambah" class="me-2" outlined/>
-                        <Button @click="submit()" type="submit" label="Simpan" />
-                    </div>
-                    
-            </template>
-        </Card>
+            <div class="text-end mt-3">
+                <Button @click="addInput()" type="button" label="Tambah" class="me-2" severity="secondary" outlined/>
+                <Button @click="submit()" type="submit" label="Simpan" />
+            </div>
+
+        </div>    
 
         <Toast position="top-right"/>
 

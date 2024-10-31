@@ -5,7 +5,6 @@ import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
 import { Head } from '@inertiajs/vue3';
-import Card from 'primevue/card';
 import Tabs from 'primevue/tabs';
 import TabList from 'primevue/tablist';
 import Tab from 'primevue/tab';
@@ -28,37 +27,32 @@ defineProps({
 
     <DashboardLayout>
 
-        <Card>
-            <template #title>
-                Profile
-            </template>
-            <template #content>
+        <template #title>
+            Profile
+        </template>
 
-                <Tabs value="0">
-                    <TabList class="text-sm">
-                        <Tab value="0">Information</Tab>
-                        <Tab value="1">Password</Tab>
-                        <Tab value="2">Account</Tab>
-                    </TabList>
-                    <TabPanels>
-                        <TabPanel value="0">                    
-                            <UpdateProfileInformationForm
-                                :must-verify-email="mustVerifyEmail"
-                                :status="status"
-                                class="max-w-xl"
-                            />
-                        </TabPanel>
-                        <TabPanel value="1">                    
-                            <UpdatePasswordForm class="max-w-xl" />
-                        </TabPanel>
-                        <TabPanel value="2">
-                            <DeleteUserForm class="max-w-xl" />
-                        </TabPanel>
-                    </TabPanels>
-                </Tabs>
-
-            </template>
-        </Card>
+        <Tabs value="0" class="max-w-[600px]">
+            <TabList class="text-sm">
+                <Tab value="0">Information</Tab>
+                <Tab value="1">Password</Tab>
+                <Tab value="2">Account</Tab>
+            </TabList>
+            <TabPanels>
+                <TabPanel value="0">                    
+                    <UpdateProfileInformationForm
+                        :must-verify-email="mustVerifyEmail"
+                        :status="status"
+                        class="max-w-xl"
+                    />
+                </TabPanel>
+                <TabPanel value="1">                    
+                    <UpdatePasswordForm class="max-w-xl" />
+                </TabPanel>
+                <TabPanel value="2">
+                    <DeleteUserForm class="max-w-xl" />
+                </TabPanel>
+            </TabPanels>
+        </Tabs>
 
     </DashboardLayout>
 </template>

@@ -74,14 +74,4 @@ class SettingController extends Controller
             ],
         ]);
     }
-
-    public function store(Request $request)
-    {
-
-        foreach ($request['items'] as $item) {
-            Setting::set($item, $request[$item]);
-        }
-
-        return redirect()->route($request['redirect'])->with('success', 'Pengaturan berhasil disimpan!');
-    }
 }

@@ -8,10 +8,10 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import PrimeVue from 'primevue/config';
 import { definePreset } from '@primevue/themes';
-import Aura from '@primevue/themes/aura';
+import Nora from '@primevue/themes/nora';
 import ToastService from 'primevue/toastservice';
 
-const MyPreset = definePreset(Aura, {
+const MyPreset = definePreset(Nora, {
     semantic: {
         primary: {
             50: '{blue.50}',

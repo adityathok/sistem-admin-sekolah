@@ -5,7 +5,7 @@ import DashboardSidebar from '@/Layouts/DashboardSidebar.vue';
 </script>
 
 <template>
-    <div class="relative h-full min-h-[100vh] bg-[#F1F5F9] md:ps-[250px]">
+    <div class="relative h-full min-h-[100vh] md:ps-[250px]">
 
        <DashboardSidebar />
 
@@ -15,10 +15,13 @@ import DashboardSidebar from '@/Layouts/DashboardSidebar.vue';
             <DashboardHeader />
             
             <!-- Page Heading -->
-            <header v-if="$slots.header" class="mb-5">
+            <header v-if="$slots.title" class="mb-10">
                 <h1 class="text-2xl font-bold tracking-tight">
-                    <slot name="header" />
+                    <slot name="title" />
                 </h1>
+                <div v-if="$slots.subtitle" class="mt-2">
+                    <slot name="subtitle" />
+                </div>
             </header>
 
             <slot />
